@@ -1,0 +1,113 @@
+Main dart
+
+
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:my_first_app/widgets/buttons.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatelessWidget {
+  @override
+  Widget build(Object context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Demo Screen")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 130,
+              child: Center(
+                child: RoundedButton(
+                  btnName: 'Login',
+                  icon: Icon(Icons.login),
+                  bgColor: Colors.green,
+                  textStyle: TextStyle(color: Colors.white, fontSize: 15),
+                  callback: () {
+                    print("Login Button Pressed");
+                  },
+                ),
+              ),
+            ),
+            Container(height: 20),
+            Container(
+              width: 130,
+              child: Center(
+                child: RoundedButton(
+                  btnName: 'Sign in',
+                  icon: Icon(Icons.login),
+                  bgColor: Colors.red,
+                  textStyle: TextStyle(color: Colors.black, fontSize: 18),
+                  callback: () {
+                    print("Press Sign in Button");
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+Button dart
+
+
+
+
+import 'package:flutter/material.dart';
+
+class RoundedButton extends StatelessWidget {
+  final String btnName;
+  final Icon? icon;
+  final Color? bgColor;
+  final TextStyle? textStyle;
+  final VoidCallback? callback;
+
+  RoundedButton({
+    required this.btnName,
+    this.icon,
+    this.bgColor = Colors.blue,
+    this.textStyle,
+    this.callback,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        callback!();
+      },
+      child: icon != null
+          ? Row(
+              children: [
+                icon!,
+                Text(btnName, style: textStyle),
+              ],
+            )
+          : Text(btnName, style: textStyle),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: bgColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      ),
+    );
+  }
+}

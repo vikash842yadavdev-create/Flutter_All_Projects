@@ -1,0 +1,96 @@
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
+
+import 'package:flutter/material.dart';
+// import 'package:flutter/rendering.dart';
+// import 'package:my_first_app/widgets/buttons.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // Define the primary color for your app
+        primarySwatch: Colors.blue,
+        // Define a default brightness or theme mode
+        brightness: Brightness.light,
+        // Define other properties like text themes, app bar themes, etc.
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => DemoScreenState();
+}
+
+class DemoScreenState extends State<DemoScreen> {
+  var arrData = [
+    {"name": "John Doe", "age": 30, "unCode": "1"},
+    {"name": "Jane Smith", "age": 25, "unCode": "2"},
+    {"name": "Alice Johnson", "age": 28, "unCode": "3"},
+    {"name": "Bob Brown", "age": 35, "unCode": "4"},
+    {"name": "Charlie Davis", "age": 22, "unCode": "5"},
+    {"name": "Eve Wilson", "age": 29, "unCode": "6"},
+    {"name": "Frank Miller", "age": 33, "unCode": "7"},
+    {"name": "Grace Lee", "age": 27, "unCode": "8"},
+    {"name": "Hank Taylor", "age": 31, "unCode": "9"},
+    {"name": "Ivy Anderson", "age": 24, "unCode": "10"},
+    {"name": "Jack Thomas", "age": 26, "unCode": "11"},
+    {"name": "Kathy Martinez", "age": 32, "unCode": "12"},
+    {"name": "Leo Harris", "age": 23, "unCode": "13"},
+    {"name": "Mia Clark", "age": 34, "unCode": "14"},
+    {"name": "Nina Rodriguez", "age": 21, "unCode": "15"},
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Demo App"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: ListView(
+        children: arrData
+            .map(
+              (item) => Container(
+                margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text("Name: ${item["name"]}"),
+                  subtitle: Text("Age: ${item["age"]}"),
+                  trailing: CircleAvatar(
+                    backgroundColor: Colors.blueAccent,
+                    radius: 15,
+                    child: Text("${item["unCode"]}"),
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+}

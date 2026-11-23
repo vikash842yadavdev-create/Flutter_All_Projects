@@ -1,0 +1,97 @@
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+
+// import 'package:flutter/rendering.dart';
+// import 'package:my_first_app/widgets/buttons.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // Define the primary color for your app
+        primarySwatch: Colors.blue,
+        // Define a default brightness or theme mode
+        brightness: Brightness.light,
+        // Define other properties like text themes, app bar themes, etc.
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => DemoScreenState();
+}
+
+class DemoScreenState extends State<DemoScreen> {
+  var nameControler = TextEditingController();
+  var getingValue = 'Value not found';
+
+  @override
+  void initState() {
+    super.initState();
+
+    getValue();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Demo App"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Center(
+        child: Container(
+          width: 300,
+          height: 400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: nameControler,
+                decoration: InputDecoration(
+                  labelText: 'Enter your name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  var prefs = await SharedPreferences.getInstance();
+                  prefs.setString('name', nameControler.text.toString());
+                },
+                child: Text('Save'),
+              ),
+              SizedBox(height: 20),
+              Text(getingValue),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void getValue() async {
+    var prefs = await SharedPreferences.getInstance();
+    var name = prefs.getString('name') ?? 'No Value Given';
+    setState(() {
+      getingValue = name;
+    });
+  }
+}

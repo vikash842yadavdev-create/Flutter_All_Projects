@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatelessWidget {
+  @override
+  Widget build(Object context) {
+    var colorsList = [
+      Colors.red,
+      Colors.green,
+      Colors.blue,
+      Colors.yellow,
+      Colors.orange,
+      Colors.purple,
+      Colors.cyan,
+      Colors.pink,
+      Colors.lime,
+    ];
+    return Scaffold(
+      appBar: AppBar(title: Text("Demo Screen")),
+
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 150,
+          crossAxisSpacing: 4.0,
+          mainAxisSpacing: 4.0,
+        ),
+        itemBuilder: (context, index) {
+          return Container(color: colorsList[index]);
+        },
+        itemCount: colorsList.length,
+      ),
+    );
+  }
+}

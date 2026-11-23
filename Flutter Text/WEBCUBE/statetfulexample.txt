@@ -1,0 +1,122 @@
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
+
+import 'package:flutter/material.dart';
+// import 'package:flutter/rendering.dart';
+// import 'package:my_first_app/widgets/buttons.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // Define the primary color for your app
+        primarySwatch: Colors.blue,
+        // Define a default brightness or theme mode
+        brightness: Brightness.light,
+        // Define other properties like text themes, app bar themes, etc.
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => DemoScreenState();
+}
+
+class DemoScreenState extends State<DemoScreen> {
+  var noOne = TextEditingController();
+  var noTwo = TextEditingController();
+  var result = "";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Demo App"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Container(
+        color: Colors.blueGrey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: noOne,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                hintText: "Enter first number",
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green, width: 1),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: 1),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+            TextField(
+              controller: noTwo,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                hintText: "Enter Second number",
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green, width: 1),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: 1),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    var firstNo = int.parse(noOne.text.toString());
+                    var secondNo = int.parse(noTwo.text.toString());
+                    var sum = firstNo + secondNo;
+                    result = "Sum is : $sum";
+                    setState(() {});
+                  },
+                  child: Text("Add"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    var firstNo = int.parse(noOne.text.toString());
+                    var secondNo = int.parse(noTwo.text.toString());
+                    var sub = firstNo - secondNo;
+                    result = "Subtraction is : $sub";
+                    setState(() {});
+                  },
+                  child: Text("Subtract"),
+                ),
+              ],
+            ),
+            Text(
+              result,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

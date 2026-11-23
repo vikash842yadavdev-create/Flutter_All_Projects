@@ -1,0 +1,87 @@
+Main.dart 
+
+
+import 'package:basicinformation/screens/firstScreen.dart';
+import 'package:basicinformation/screens/homeScreen.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: FirstScreen(),
+      routes: {'/home': (context) => HomeScreen()},
+    );
+  }
+}
+
+
+firstScreen.dart
+
+
+import 'package:basicinformation/screens/homeScreen.dart';
+import 'package:basicinformation/screens/profileScreen.dart';
+import 'package:basicinformation/screens/settingScreen.dart';
+import 'package:flutter/material.dart';
+
+class FirstScreen extends StatefulWidget {
+  @override
+  _FirstScreenState createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
+  int _Screenindex = 0;
+  final List _screens = [HomeScreen(), ProfileScreen(), SettingScreen()];
+
+  void _UpdateScreenIndex(int index) {
+    setState(() {
+      _Screenindex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('First Screen')),
+      body: _screens[_Screenindex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _Screenindex,
+        onTap: _UpdateScreenIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+homeScreen.dart
+
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Colors.blueAccent[200],
+        child: Center(child: Text('Home Screen Content')),
+      ),
+    );
+  }
+}
+   
+
+Baki ki sari aase hi benege like home screen

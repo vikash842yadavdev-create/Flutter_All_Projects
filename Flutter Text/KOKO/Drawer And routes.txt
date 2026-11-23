@@ -1,0 +1,75 @@
+import 'package:basicinformation/homeScreen.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DemoScreen(),
+      routes: {'/home': (context) => HomeScreen()},
+    );
+  }
+}
+
+class DemoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _DemoScreenState();
+}
+
+class _DemoScreenState extends State<DemoScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Demo Screen")),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text(
+                'Navigation Drawer',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+Navigator.pop(context); // Close the drawer
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// import 'package:flutter/material.dart';
+
+// class HomeScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Home Screen"),
+//       ),
+//       body: Center(
+//         child: Text(
+//           "Welcome to the Home Screen!",
+//           style: TextStyle(
+//             color: Colors.blue,
+//             fontSize: 24),
+//         ),
+//       ),
+//     );
+//   }
+// }

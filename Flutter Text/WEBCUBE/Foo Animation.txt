@@ -1,0 +1,93 @@
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
+
+import 'package:flutter/material.dart';
+// import 'package:flutter/rendering.dart';
+// import 'package:my_first_app/widgets/buttons.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // Define the primary color for your app
+        primarySwatch: Colors.blue,
+        // Define a default brightness or theme mode
+        brightness: Brightness.light,
+        // Define other properties like text themes, app bar themes, etc.
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => DemoScreenState();
+}
+
+class DemoScreenState extends State<DemoScreen> {
+  var _width = 100.0;
+  var _height = 100.0;
+  bool flag = true;
+  Decoration _decoration = BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.circular(8),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Demo App"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Center(
+        child: AnimatedContainer(
+          duration: Duration(seconds: 1),
+          width: _width,
+          height: _height,
+          decoration: _decoration,
+          curve: Curves.bounceOut,
+          child: TextButton(
+            child: Text("Click Me", style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              setState(() {
+                if (flag) {
+                  _width = 200;
+                  _height = 200;
+                  _decoration = BoxDecoration(
+                    gradient: RadialGradient(
+                      colors: [Color(0xffa18cd1), Color(0xfffbc2eb)],
+                    ),
+                    borderRadius: BorderRadius.circular(100),
+                  );
+                  flag = false;
+                } else {
+                  _width = 100;
+                  _height = 100;
+                  _decoration = BoxDecoration(
+                    gradient: RadialGradient(
+                      colors: [Color(0xffff9a9e), Color(0xfffad0c4)],
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  );
+                  flag = true;
+                }
+              });
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}

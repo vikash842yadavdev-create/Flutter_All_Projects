@@ -1,0 +1,96 @@
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
+
+import 'package:flutter/material.dart';
+
+// import 'package:flutter/rendering.dart';
+// import 'package:my_first_app/widgets/buttons.dart';
+
+void main() {
+  runApp(FlutterApp());
+}
+
+class FlutterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Demo App",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // Define the primary color for your app
+        primarySwatch: Colors.blue,
+        // Define a default brightness or theme mode
+        brightness: Brightness.light,
+        // Define other properties like text themes, app bar themes, etc.
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      home: DemoScreen(),
+    );
+  }
+}
+
+class DemoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => DemoScreenState();
+}
+
+class DemoScreenState extends State<DemoScreen> {
+  List arrList = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    22,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Demo App"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: ListWheelScrollView(
+        itemExtent: 300,
+        children: arrList
+            .map(
+              (value) => Container(
+                child: Center(
+                  child: Text(
+                    "Item $value",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.primaries[value % Colors.primaries.length],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+}
