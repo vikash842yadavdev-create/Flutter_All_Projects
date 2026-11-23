@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "53196367680",
+    "firebase_url": "https://flutterfirebasenew-75032-default-rtdb.firebaseio.com",
+    "project_id": "flutterfirebasenew-75032",
+    "storage_bucket": "flutterfirebasenew-75032.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53196367680:android:fa9b1f76c6fc2b11023ca5",
+        "android_client_info": {
+          "package_name": "com.example.flutterfirebasenew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53196367680-jb5eah488hn00t40r4999i21omqnrkb4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterfirebasenew",
+            "certificate_hash": "e17840cc938a19eaed2682c4cad50ee5a8cb464b"
+          }
+        },
+        {
+          "client_id": "53196367680-3q3jc85jlgn48cnbooi1togefo4jshj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEQSBceVjjBrbfWfT-M8PJTiVi578KCz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53196367680-3q3jc85jlgn48cnbooi1togefo4jshj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
